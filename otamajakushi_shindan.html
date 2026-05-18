@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お子さんの個性・才能診断 | おたまじゃくし</title>
+<meta property="og:image" content="images/ogp.png">
+<meta property="og:title" content="うちの子の個性・才能タイプは？| おたまじゃくし">
+<meta property="og:description" content="お子さんの個性と才能を診断！ぴったりの習い事をご提案します。">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="images/ogp.png">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.19.0/iconfont/tabler-icons.min.css">
+<style>
+:root {
+  --primary: #378ADD;
+  --primary-dark: #185FA5;
+  --primary-light: #E6F1FB;
+  --primary-border: #B5D4F4;
+  --teal: #0F6E56;
+  --teal-light: #E1F5EE;
+  --teal-border: #9FE1CB;
+  --text-primary: #1a1a1a;
+  --text-secondary: #555;
+  --text-tertiary: #999;
+  --border: #e8e8e8;
+  --border-light: #f0f0f0;
+  --bg: #fafafa;
+  --bg-card: #ffffff;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text-primary);min-height:100vh;padding-bottom:3rem;}
+.header{background:white;border-bottom:0.5px solid var(--border);padding:1rem 1.5rem;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:10;}
+.header-logo{font-family:'Shippori Mincho',serif;font-size:16px;font-weight:600;color:var(--primary-dark);letter-spacing:0.05em;}
+.header-sub{font-size:11px;color:var(--text-tertiary);border-left:1px solid var(--border);padding-left:10px;margin-left:2px;}
+.main{max-width:560px;margin:0 auto;padding:2rem 1rem;}
+.age-intro{text-align:center;margin-bottom:2rem;padding:2rem 1rem 1rem;}
+.age-intro-title{font-family:'Shippori Mincho',serif;font-size:26px;font-weight:600;color:var(--text-primary);line-height:1.6;margin-bottom:0.75rem;}
+.age-intro-sub{font-size:14px;color:var(--text-secondary);line-height:1.7;}
+.age-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem;}
+.age-btn{background:white;border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem 1rem;cursor:pointer;text-align:center;transition:all 0.2s;box-shadow:0 1px 4px rgba(0,0,0,0.04);}
+.age-btn:hover{border-color:var(--primary-border);box-shadow:0 4px 12px rgba(55,138,221,0.12);transform:translateY(-1px);}
+.age-btn .age-main{font-size:20px;font-weight:700;color:var(--text-primary);display:block;margin-bottom:4px;}
+.age-btn .age-sub{font-size:12px;color:var(--text-tertiary);}
+.q-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;}
+.q-label{font-size:12px;color:var(--text-tertiary);}
+.prog-bg{height:3px;background:var(--border-light);border-radius:2px;margin-bottom:2rem;overflow:hidden;}
+.prog-fill{height:3px;background:linear-gradient(90deg,var(--primary-border),var(--primary));border-radius:2px;transition:width 0.4s ease;}
+.q-text{font-size:18px;font-weight:500;color:var(--text-primary);line-height:1.65;margin-bottom:1.75rem;}
+.choices{display:flex;flex-direction:column;gap:10px;}
+.choice-btn{background:white;border:0.5px solid var(--border);border-radius:var(--radius-md);padding:14px 16px;font-size:14px;font-family:'Noto Sans JP',sans-serif;color:var(--text-primary);cursor:pointer;text-align:left;line-height:1.5;transition:all 0.15s;}
+.choice-btn:hover{border-color:var(--primary-border);background:var(--primary-light);}
+.choice-btn.sel{border:1.5px solid var(--primary);background:var(--primary-light);color:var(--primary-dark);font-weight:500;}
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:1.75rem;}
+.nav-btn{background:transparent;border:0.5px solid var(--border);border-radius:var(--radius-sm);padding:9px 20px;font-size:13px;font-family:'Noto Sans JP',sans-serif;color:var(--text-secondary);cursor:pointer;transition:all 0.15s;}
+.nav-btn:hover{background:var(--border-light);}
+.nav-btn:disabled{opacity:0.3;cursor:default;}
+.nav-btn.primary{background:var(--primary);border-color:var(--primary);color:white;font-weight:500;}
+.nav-btn.primary:hover{background:var(--primary-dark);}
+.nav-btn.primary:disabled{opacity:0.4;cursor:default;}
+.result-hero{background:white;border:0.5px solid var(--border);border-radius:var(--radius-xl);padding:1.75rem;margin-bottom:1rem;box-shadow:0 2px 12px rgba(0,0,0,0.04);}
+.result-top{display:flex;align-items:center;gap:12px;margin-bottom:1.25rem;}
+.result-icon{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.result-icon.blue{background:var(--primary-light);color:var(--primary);}
+.result-icon.teal{background:var(--teal-light);color:var(--teal);}
+.result-badge{display:inline-block;font-size:10px;letter-spacing:0.1em;border-radius:20px;padding:2px 10px;margin-bottom:5px;}
+.result-badge.blue{background:var(--primary-light);color:var(--primary-dark);}
+.result-badge.teal{background:var(--teal-light);color:var(--teal);}
+.result-type{font-family:'Shippori Mincho',serif;font-size:20px;font-weight:600;color:var(--text-primary);line-height:1.3;}
+.section{margin-bottom:1.25rem;}
+.sec-label{font-size:10px;letter-spacing:0.12em;color:var(--text-tertiary);margin-bottom:6px;}
+.desc-text{font-size:14px;color:var(--text-secondary);line-height:1.8;}
+.advice-box{background:var(--bg);border-radius:var(--radius-sm);padding:1rem 1.1rem;font-size:14px;color:var(--text-secondary);line-height:1.8;border-left:3px solid var(--primary-border);}
+.divider{height:0.5px;background:var(--border-light);margin:1.25rem 0;}
+.lesson-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:8px;}
+.lt{font-size:12px;border-radius:20px;padding:5px 13px;border:0.5px solid var(--border);}
+.lt.mine{background:var(--primary-light);color:var(--primary-dark);border-color:var(--primary-border);font-weight:500;}
+.lt.gentle{background:var(--teal-light);color:var(--teal);border-color:var(--teal-border);font-weight:500;}
+.lt.other{background:var(--bg);color:var(--text-secondary);}
+.reason-card{background:var(--bg);border-radius:var(--radius-md);padding:1rem 1.1rem;margin-bottom:8px;}
+.reason-name{font-size:13px;font-weight:500;color:var(--primary-dark);margin-bottom:5px;}
+.reason-name.teal{color:var(--teal);}
+.reason-body{font-size:13px;color:var(--text-secondary);line-height:1.75;}
+.cta-card{background:var(--primary-light);border-radius:var(--radius-xl);padding:1.5rem;margin-bottom:1rem;}
+.cta-title{font-size:15px;font-weight:700;color:var(--primary-dark);margin-bottom:5px;}
+.cta-body{font-size:13px;color:#185FA5;line-height:1.7;margin-bottom:1rem;}
+.cta-btn{background:#06C755;color:white;border:none;border-radius:var(--radius-sm);padding:11px 24px;font-size:14px;font-family:'Noto Sans JP',sans-serif;font-weight:500;cursor:pointer;width:100%;transition:background 0.15s;}
+.cta-btn:hover{background:#05a847;}
+.support-card{background:var(--teal-light);border:0.5px solid var(--teal-border);border-radius:var(--radius-xl);padding:1.5rem;margin-bottom:1rem;}
+.support-title{font-size:15px;font-weight:700;color:var(--teal);margin-bottom:8px;}
+.support-body{font-size:13px;color:var(--teal);line-height:1.8;margin-bottom:0.75rem;}.line-btn{background:#06C755;color:white;border:none;border-radius:var(--radius-sm);padding:11px 24px;font-size:14px;font-family:'Noto Sans JP',sans-serif;font-weight:500;cursor:pointer;width:100%;transition:background 0.15s;}.line-btn:hover{background:#05a847;}
+.share-row{display:flex;gap:8px;margin-bottom:0.75rem;}
+.share-btn{flex:1;background:white;border:0.5px solid var(--border);border-radius:var(--radius-sm);padding:11px 8px;font-size:13px;font-family:'Noto Sans JP',sans-serif;color:var(--text-secondary);cursor:pointer;text-align:center;transition:background 0.15s;}
+.share-btn:hover{background:var(--border-light);}
+.retry-btn{background:transparent;border:none;font-size:13px;color:var(--text-tertiary);cursor:pointer;display:block;text-align:center;width:100%;padding:0.5rem;font-family:'Noto Sans JP',sans-serif;}
+.retry-btn:hover{color:var(--text-secondary);}
+@media(max-width:400px){.q-text{font-size:16px;}}
+</style>
+</head>
+<body>
+<header class="header">
+  <span class="header-logo">おたまじゃくし</span>
+  <span class="header-sub">お子さんの個性・才能診断</span>
+</header>
+<div class="main" id="app"></div>
+<script>
+const AGE_GROUPS={baby:{label:"0〜1歳",sub:"ねんね〜あんよ期",questions:[{text:"赤ちゃんの様子で当てはまるものは？",choices:[{text:"音楽が流れると体を動かしたり反応する",s:{rhythm:3}},{text:"人の顔をじっと見て笑いかけるのが好き",s:{social:3}},{text:"手足をよく動かしてバタバタ元気",s:{body:3}},{text:"発達面で気になることがある・サポートが必要",s:{support:3}}]},{text:"親御さんが一緒にやりたいことは？",choices:[{text:"赤ちゃんと一緒に音楽やリズムを楽しみたい",s:{rhythm:3}},{text:"スキンシップや体のふれあいを大切にしたい",s:{body:3}},{text:"発達をサポートしながら関わりたい",s:{support:3}},{text:"外の世界とつながり親子で楽しみたい",s:{social:3}}]}]},toddler:{label:"2〜3歳",sub:"よちよち〜やんちゃ期",questions:[{text:"お子さんが一番好きな遊びは？",choices:[{text:"音楽に合わせて踊ったり歌ったりする",s:{rhythm:3,expr:1}},{text:"走り回ったりジャンプしたり体を動かす",s:{body:3,sport:1}},{text:"積み木やパズルなど手先を使う遊び",s:{calm:3,art:1}},{text:"発達面で気になることがある",s:{support:3}}]},{text:"気持ちの表現はどちらに近い？",choices:[{text:"体全体で表現する（踊る・叫ぶ・ジャンプ）",s:{body:2,expr:2}},{text:"言葉や声でよく話す・歌う",s:{expr:3,rhythm:1}},{text:"じっと観察してからゆっくり行動",s:{calm:3}},{text:"特定の感覚や刺激に強い反応がある",s:{support:3}}]},{text:"音楽が流れるとどんな反応？",choices:[{text:"すぐリズムをとったり踊り始める",s:{rhythm:3,body:1}},{text:"好きな曲を何度もリピートしたがる",s:{calm:2,rhythm:1}},{text:"あまり反応しない・苦手な音がある",s:{support:2}},{text:"歌いながら物語を作り始める",s:{expr:3,art:1}}]},{text:"お子さんの一番の強みは？",choices:[{text:"感受性が豊かで音楽や音に敏感",s:{rhythm:3,art:1}},{text:"体の動きが活発でエネルギーがある",s:{body:3,sport:1}},{text:"自分のペースで集中して取り組む",s:{calm:3}},{text:"人懐っこくてコミュニケーションが上手",s:{social:3,expr:1}}]}]},preschool:{label:"4〜6歳",sub:"幼稚園・保育園期",questions:[{text:"お子さんが一番イキイキする瞬間は？",choices:[{text:"音楽が流れると体が自然に動いている",s:{rhythm:3,expr:1}},{text:"絵や工作に夢中で時間を忘れている",s:{art:3,calm:1}},{text:"友だちと一緒にゲームや遊びを楽しむ",s:{social:3,sport:1}},{text:"発達面が気になる・こだわりや感覚過敏がある",s:{support:3}}]},{text:"気持ちを表現するとき、どちらに近い？",choices:[{text:"体全体で表現する（踊る・ジャンプ）",s:{body:2,rhythm:2}},{text:"言葉や声でよく話す",s:{expr:3,social:1}},{text:"絵や文字に書いて表す",s:{art:3,calm:1}},{text:"感情のコントロールが難しいことがある",s:{support:2,expr:1}}]},{text:"どんな遊びが好き？",choices:[{text:"かけっこや体を動かす遊び",s:{sport:3,body:1}},{text:"おままごとや役になりきる遊び",s:{expr:3,social:1}},{text:"積み木やパズルなど集中する遊び",s:{calm:3,art:1}},{text:"みんなで一緒にやる遊びが好き",s:{social:3,sport:1}}]},{text:"初めての場所や人に対して？",choices:[{text:"すぐ打ち解けてリーダーになりがち",s:{social:3,expr:1}},{text:"少し様子を見てから自分のペースで",s:{calm:2,art:2}},{text:"体を動かしながら場の雰囲気に入る",s:{body:2,sport:2}},{text:"強い不安や緊張を感じやすい",s:{support:3}}]},{text:"親御さんが感じる一番の強みは？",choices:[{text:"感受性が豊かで感情表現が上手",s:{expr:3,rhythm:1}},{text:"体の使い方が上手で運動が得意そう",s:{sport:3,body:1}},{text:"観察力・記憶力・集中力が高い",s:{calm:3,art:1}},{text:"人を惹きつける明るさと社交性がある",s:{social:3,expr:1}}]}]},school:{label:"7〜12歳",sub:"小学生期",questions:[{text:"お子さんが一番好きな活動は？",choices:[{text:"音楽・歌・楽器・ダンス",s:{rhythm:3,expr:1}},{text:"絵・工作・書道など創る系",s:{art:3,calm:1}},{text:"スポーツ・体を動かすこと",s:{sport:3,body:1}},{text:"読書・研究・じっくり考えること",s:{calm:3,art:1}}]},{text:"学校や習い事でどんな場面が好き？",choices:[{text:"発表会や舞台など人前に立つ場面",s:{expr:3,social:1}},{text:"コツコツ練習して上手くなる瞬間",s:{calm:3,art:1}},{text:"チームやグループで何かを成し遂げる",s:{social:3,sport:1}},{text:"個別対応や少人数でのサポートが向いている",s:{support:3}}]},{text:"感情や気持ちの表現は？",choices:[{text:"豊かに感情表現できる",s:{expr:3,rhythm:1}},{text:"体を動かして発散する",s:{body:3,sport:1}},{text:"じっくり内側で感じて考える",s:{calm:3,art:1}},{text:"感情のコントロールや対人関係が難しいことがある",s:{support:3}}]},{text:"集中できるのはどんな状況？",choices:[{text:"音楽や動きがある環境",s:{rhythm:2,body:2}},{text:"静かで自分のペースで取り組めるとき",s:{calm:3,art:1}},{text:"みんなと一緒にやる活動",s:{social:3,expr:1}},{text:"体を動かしながらのとき",s:{sport:3,body:1}}]},{text:"将来どんな大人に育ってほしい？",choices:[{text:"感性豊かに自分を表現できる人",s:{expr:2,rhythm:2}},{text:"コツコツ積み上げる職人・専門家",s:{calm:3,art:1}},{text:"チームで活躍するスポーツマン",s:{sport:2,social:2}},{text:"人を笑顔にするエンターテイナー",s:{expr:2,social:2}}]},{text:"習い事を選ぶとき重視したいことは？",choices:[{text:"音楽・リズム感・表現力を育てたい",s:{rhythm:2,expr:2}},{text:"集中力・芸術性・創造力を伸ばしたい",s:{art:2,calm:2}},{text:"体力・運動能力・チームワークをつけたい",s:{sport:2,social:2}},{text:"お子さんのペースに合わせたサポートが必要",s:{support:3}}]}]}};
+
+const RESULT_MAP={rhythm:{baby:{lessons:[{n:"リトミック（ベビークラス）",t:"mine",r:"生後すぐから通えるベビークラスで、音楽に合わせてママと一緒に体を動かします。「聴く・感じる・動く」の繰り返しが、言語発達や感情の土台を育てます。"},{n:"やさしいおとリトミック（音楽療法士担当）",t:"gentle",r:"音楽療法士が担当するゆっくりペースのクラス。音に敏感な赤ちゃんでも安心して音楽と出会える環境です。"}],other:["ベビーマッサージ","親子ヨガ"]},toddler:{lessons:[{n:"リトミック",t:"mine",r:"音楽を体全体で感じながら、リズム・音程・拍感を遊びの中で自然に身につけます。このタイプが持つ音楽への直感を、早い時期に育てる最適なレッスンです。"},{n:"やさしいおとリトミック（音楽療法士担当）",t:"gentle",r:"音楽療法士担当のゆっくりペースクラス。音への感受性が高いお子さんが、安心して音楽を楽しめる環境です。"},{n:"ピアノ",t:"mine",r:"3歳から始められます。「音を出す→耳で確認する」という繰り返しが、持ち前の音感をより精密に育てます。"}],other:["親子ダンス","親子ヨガ"]},preschool:{lessons:[{n:"リトミック",t:"mine",r:"音楽・リズム・動きを一体で学ぶリトミックは、このタイプにとって最も自然なレッスン。音楽を「全身で感じる力」がどんどん伸びます。"},{n:"ピアノ",t:"mine",r:"持ち前の音感とリズム感がそのまま武器になります。曲を耳で覚えてしまう力を、正しい技術と組み合わせて伸ばせます。"},{n:"鍵盤ハーモニカ",t:"mine",r:"年長から始められます。吹きながら指を動かすことで、呼吸・リズム・音感を同時に育てられる楽器です。"}],other:["合唱","マリンバ"]},school:{lessons:[{n:"ピアノ",t:"mine",r:"音楽を深く追求できる個人レッスンで、表現の幅が広がります。持ち前のリズム感と音感を本格的な技術へと昇華させられます。"},{n:"ダンス",t:"mine",r:"音楽に合わせて全身で表現するダンスは、このタイプの得意なことを最大限に活かせます。リズムを体で表現する喜びをさらに深く体験できます。"},{n:"鍵盤ハーモニカ",t:"mine",r:"学校の授業とも連動しながら、音楽の基礎力をしっかり固められます。アンサンブルの楽しさも体験できます。"}],other:["合唱","吹奏楽"]}},expr:{baby:{lessons:[{n:"リトミック（ベビークラス）",t:"mine",r:"音楽に反応して体を動かしたり声を出したりする赤ちゃんの表現欲求を、ママと一緒に思い切り発揮できる場です。"},{n:"やさしいおとリトミック（音楽療法士担当）",t:"gentle",r:"音楽療法士が担当。表情豊かな赤ちゃんがさらに豊かに反応できるよう、丁寧に関わります。"}],other:["ベビーマッサージ","親子ヨガ"]},toddler:{lessons:[{n:"リトミック",t:"mine",r:"歌う・動く・表現するを思い切りできる場。人前で自分を出すことが大好きなこのタイプには、グループで音楽を楽しむリトミックがぴったりです。"},{n:"バレエ",t:"mine",r:"3歳から始められます。体全体で音楽と物語を表現するバレエは、このタイプの表現欲求を正しい体の使い方とともに育てます。"},{n:"ピアノ",t:"mine",r:"「この曲はこんな気持ちで弾く」という感情表現をそのまま音にできる楽器。豊かな感情を持つこのタイプの強みが活きます。"}],other:["ミュージカル","親子ダンス"]},preschool:{lessons:[{n:"バレエ",t:"mine",r:"発表会で舞台に立つ経験を重ねることで、人前での表現力と自信が自然に育ちます。"},{n:"ダンス",t:"mine",r:"チアダンス・KPOP・JAZZなど多彩なジャンルで「自分らしく踊る」を体験。表現することへの喜びをどんどん広げられます。"},{n:"リトミック",t:"mine",r:"音楽・動き・声を組み合わせた総合表現の場。グループの中でも自然に存在感を発揮するこのタイプが伸び伸び輝ける環境です。"}],other:["ミュージカル","演劇"]},school:{lessons:[{n:"バレエ",t:"mine",r:"年に複数回ある発表会で舞台経験を積み、表現力・度胸・礼儀が同時に育ちます。仲間と一つの舞台を作り上げる達成感も大きいです。"},{n:"ダンス",t:"mine",r:"ジュニアクラスでは細かい体の使い方や表現力を本格的に磨けます。自分らしさを全身で表現する喜びをさらに深く追求できます。"},{n:"ピアノ",t:"mine",r:"感情の豊かさがそのまま演奏の表現力になります。発表会でも自分の演奏を通じて聴衆に気持ちを伝える体験が積めます。"}],other:["ミュージカル","ボーカル"]}},art:{baby:{lessons:[{n:"リトミック（ベビークラス）",t:"mine",r:"音楽をじっくり感じて反応する赤ちゃんの観察力と感受性を、音・リズム・動きを通じてやさしく刺激します。"},{n:"やさしいおとリトミック（音楽療法士担当）",t:"gentle",r:"音楽療法士担当のゆっくりペースで、一つ一つの音をじっくり感じる時間を大切にします。"}],other:["ベビーマッサージ","親子ヨガ"]},toddler:{lessons:[{n:"リトミック",t:"mine",r:"一つ一つの音やリズムをじっくり感じながら、自分なりの動きで表現する時間が豊富です。このタイプが持つ丁寧さと感受性が存分に活かされます。"},{n:"ピアノ",t:"mine",r:"3歳から始められます。一音一音を丁寧に出すピアノは、このタイプが持つ「こだわり」と「集中力」を正しい方向に向けられる最適な楽器です。"},{n:"やさしいおとリトミック（音楽療法士担当）",t:"gentle",r:"自分のペースで音楽と向き合えるゆっくりした環境は、じっくり感じるタイプのお子さんに安心感を与えます。"}],other:["絵画教室","粘土造形"]},preschool:{lessons:[{n:"書道",t:"mine",r:"筆を持ち、息を整えて一画一画を丁寧に書く書道は、このタイプが持つ集中力と美意識をそのまま活かせるレッスンです。"},{n:"ピアノ",t:"mine",r:"一曲を長い時間かけて仕上げていく過程に、このタイプは大きな喜びを感じます。細部への注意力と粘り強さが自然に磨かれます。"},{n:"リトミック",t:"mine",r:"音楽を感じる時間をじっくりとれるリトミックは、このタイプの豊かな内面を刺激します。音楽を「作り出す」喜びも体験できます。"}],other:["絵画教室","工作教室"]},school:{lessons:[{n:"書道",t:"mine",r:"小1から始められます。静かな空間で筆と向き合う時間は、このタイプにとって最も集中できる時間。字の美しさへのこだわりが技術向上に直結します。"},{n:"ピアノ",t:"mine",r:"難しいパッセージを何度も練習して完成させる達成感は、探究タイプのお子さんにとって大きなモチベーションになります。"},{n:"鍵盤ハーモニカ",t:"mine",r:"アンサンブルの中で自分のパートを丁寧に仕上げる喜びを体験できます。一音一音への意識が高いこのタイプに向いています。"}],other:["絵画教室","陶芸"]}},sport:{baby:{lessons:[{n:"リトミック（ベビークラス）",t:"mine",r:"音楽に合わせてダイナミックに体を動かすベビーリトミック。動きたい欲求を音楽と一緒に発散できる、体の活発な赤ちゃんにぴったりの場です。"},{n:"やさしいおとリトミック（音楽療法士担当）",t:"gentle",r:"音楽療法士担当。体を動かしながら音楽と触れ合う体験を、安心できるペースで積み重ねます。"}],other:["ベビーマッサージ","ベビー体操"]},toddler:{lessons:[{n:"リトミック",t:"mine",r:"「走る・止まる・ジャンプする」などのダイナミックな動きを音楽に合わせて行います。体を動かすことが大好きなこのタイプには、動きの多いリトミックが最適です。"},{n:"バレエ",t:"mine",r:"3歳から始められます。エネルギーの高いお子さんほど上達が早いバレエ。体幹・柔軟性・空間認識能力を楽しみながら育てます。"},{n:"やさしいおとリトミック（音楽療法士担当）",t:"gentle",r:"エネルギッシュなお子さんがゆっくりペースで体の感覚を整える時間としても有効です。"}],other:["体操教室","親子ダンス"]},preschool:{lessons:[{n:"運動",t:"mine",r:"全身を使ったダイナミックな動きを系統的に学べます。走る・跳ぶ・投げる・バランスをとるなど、運動の基礎をこの時期にしっかり積み上げられます。"},{n:"バレエ",t:"mine",r:"体幹・柔軟性・姿勢を美しく整えながら、体のコントロール能力を高めます。運動神経の高いこのタイプほど表現の幅が広がります。"},{n:"ダンス",t:"mine",r:"年中から始められます。チアダンスやHIPHOPなどのジャンルで、全身を使った表現を楽しみながら体力・リズム感を同時に鍛えます。"}],other:["水泳","サッカー"]},school:{lessons:[{n:"運動",t:"mine",r:"ジュニア運動クラスでは、体の細かい使い方や瞬発力・持久力を本格的に鍛えます。運動能力の土台をしっかり作る時期に最適です。"},{n:"ダンス",t:"mine",r:"ジュニアクラスで全身のコントロールと表現力を同時に磨けます。体を動かすことが好きなこのタイプには、踊りながら上達する喜びが大きい習い事です。"},{n:"バレエ",t:"mine",r:"年齢が上がるほど技術の幅が広がります。体を極限まで使いこなす喜びと、舞台で輝く体験の両方が得られます。"}],other:["水泳","体操教室"]}},social:{baby:{lessons:[{n:"リトミック（ベビークラス）",t:"mine",r:"ママたちと一緒に音楽を楽しむグループクラス。人が大好きな赤ちゃんの社会性の芽を、同世代のお友だちとの関わりの中で育てます。"},{n:"やさしいおとリトミック（音楽療法士担当）",t:"gentle",r:"少人数でのやさしい集団体験。はじめての「みんなと一緒に何かをする」喜びを安心して体験できます。"}],other:["ベビーマッサージ","親子サークル"]},toddler:{lessons:[{n:"リトミック",t:"mine",r:"みんなで一緒に音楽に合わせて動くリトミックは、このタイプが最も輝ける場。友だちとの関わりの中で自然にリーダーシップが育ちます。"},{n:"バレエ",t:"mine",r:"3歳から始められます。グループで練習し、発表会でみんなと舞台に立つ体験が、仲間意識と協調性を深めます。"},{n:"やさしいおとリトミック（音楽療法士担当）",t:"gentle",r:"少人数クラスで一人ひとりが活躍できる場面が多く、人と関わることが好きなこのタイプが自信をつけやすい環境です。"}],other:["親子ダンス","親子サークル"]},preschool:{lessons:[{n:"ダンス",t:"mine",r:"年中から始められます。グループで振り付けを合わせる練習や発表会の経験が、協調性・チームワーク・人前での自信を同時に育てます。"},{n:"バレエ",t:"mine",r:"年に複数の発表会があり、仲間と一つの舞台を作り上げる達成感を繰り返し体験できます。リーダー性の高いこのタイプが活躍できる場です。"},{n:"運動",t:"mine",r:"チームで動く活動を通じて、自然にコミュニケーション力と協調性が育ちます。人をまとめる力が早くから発揮できます。"}],other:["ミュージカル","合唱"]},school:{lessons:[{n:"ダンス",t:"mine",r:"ジュニアクラスで仲間と本格的な作品を作り上げます。振り付けを合わせる過程で生まれる連帯感が、このタイプの社交性をさらに伸ばします。"},{n:"バレエ",t:"mine",r:"発表会での共同作業を通じて深まる仲間との絆が、このタイプにとって大きなモチベーションになります。"},{n:"書道",t:"mine",r:"小1から始められます。同じ目標に向かって黙々と取り組む仲間との時間が、静かな集中力と人との絆を育てます。"}],other:["合唱","ミュージカル"]}},calm:{baby:{lessons:[{n:"リトミック（ベビークラス）",t:"mine",r:"音をじっくり聴いてから反応するタイプの赤ちゃんにとって、音楽の変化に耳を澄ませるリトミックは心地よい刺激になります。"},{n:"やさしいおとリトミック（音楽療法士担当）",t:"gentle",r:"ゆっくりペースで一つ一つの音を丁寧に体験できます。じっくり感じるタイプの赤ちゃんのペースに完全に合わせた環境です。"}],other:["ベビーマッサージ","親子ヨガ"]},toddler:{lessons:[{n:"ピアノ",t:"mine",r:"3歳から始められます。一つの音をゆっくり確かめながら進める個人レッスンは、このタイプの集中力と丁寧さが最大限に活きる環境です。"},{n:"リトミック",t:"mine",r:"音楽をじっくり感じる時間のあるリトミックは、観察してから動くこのタイプのリズムにぴったり合います。"},{n:"やさしいおとリトミック（音楽療法士担当）",t:"gentle",r:"急かされず自分のペースで進められる環境。じっくりタイプのお子さんが安心して音楽と向き合えます。"}],other:["知育教室","絵本読み聞かせ"]},preschool:{lessons:[{n:"ピアノ",t:"mine",r:"一曲を何週間もかけて仕上げる過程に、このタイプは大きな喜びを感じます。「完成させる達成感」を繰り返し体験することで、集中力がさらに深まります。"},{n:"書道",t:"mine",r:"筆を持ち、静かに一画に集中する書道は、このタイプが持つ「丁寧にやり遂げる力」をそのまま活かせます。"},{n:"リトミック",t:"mine",r:"音楽をじっくり感じながら自分のペースで動けるリトミックは、急かされるのが苦手なこのタイプに安心感を与えます。"}],other:["そろばん","将棋"]},school:{lessons:[{n:"書道",t:"mine",r:"小1から始められます。静かな空間で筆と向き合い、段位・級位を一段一段上がっていく成長の記録が、このタイプのモチベーションを長期間支え続けます。"},{n:"ピアノ",t:"mine",r:"難しい曲に何ヶ月もかけて取り組む過程こそが、このタイプにとって最大の喜び。じっくり積み上げる力が、確かな演奏技術に変わります。"},{n:"ヨガ",t:"mine",r:"呼吸を整えながら一つ一つのポーズを丁寧に確認するヨガは、このタイプの「内側に集中する力」を体を通じて磨きます。"}],other:["そろばん","プログラミング"]}},body:{baby:{lessons:[{n:"リトミック（ベビークラス）",t:"mine",r:"音楽に合わせて手を叩く・体を揺らす・ハイハイするなど、体の感覚を音楽とつなげる動きが豊富。活発な赤ちゃんの体の発達を音楽と一緒に促します。"},{n:"やさしいおとリトミック（音楽療法士担当）",t:"gentle",r:"音楽療法士担当。体の感覚を大切にしながら、音楽とのふれあいをゆっくり積み重ねます。"}],other:["ベビーマッサージ","ベビーヨガ"]},toddler:{lessons:[{n:"バレエ",t:"mine",r:"3歳から始められます。バーレッスンやストレッチを通じて、体の細かい感覚を意識する習慣が早くから育ちます。柔軟性と体幹がこの時期に自然に磨かれます。"},{n:"リトミック",t:"mine",r:"音楽の変化に合わせて体の動きを変える経験が豊富。「音を体で感じる」ことが得意なこのタイプの感覚をさらに豊かにします。"},{n:"やさしいおとリトミック（音楽療法士担当）",t:"gentle",r:"体の感覚を丁寧に育てることを大切にした環境。音楽と体のつながりをゆっくり深められます。"}],other:["ベビーヨガ","体操教室"]},preschool:{lessons:[{n:"バレエ",t:"mine",r:"体幹・柔軟性・バランス・空間認識など、体の感覚を多方向から磨きます。「自分の体を思い通りに動かす喜び」を早くから体験できます。"},{n:"ヨガ",t:"mine",r:"呼吸と体の感覚を丁寧に意識するヨガは、体感覚の豊かなこのタイプにとって非常に合っているレッスンです。"},{n:"運動",t:"mine",r:"様々な動きのパターンを体験することで、体の感覚の引き出しが増えます。運動の基礎を楽しみながら積み上げられます。"}],other:["新体操","体操教室"]},school:{lessons:[{n:"バレエ",t:"mine",r:"年齢が上がるほど技術の精度が求められるバレエは、体の感覚を細かく意識するこのタイプほど上達します。体の美しい使い方を極める喜びを体験できます。"},{n:"ヨガ",t:"mine",r:"ポーズ一つひとつで体の内側に意識を向けるヨガは、体感覚の豊かなこのタイプに深い充実感をもたらします。"},{n:"ダンス",t:"mine",r:"全身の感覚を使いながら音楽と一体になる体験ができます。体で覚えることが得意なこのタイプほど、踊りの表現が豊かになります。"}],other:["新体操","水泳"]}},support:{baby:{lessons:[{n:"やさしいおとリトミック（音楽療法士担当）",t:"gentle",r:"音楽療法士が担当するゆっくりペースのクラス。発達が気になる赤ちゃんでも安心して通えるよう、一人ひとりのペースに合わせた関わりをします。"},{n:"個別セッション（音楽療法士担当）",t:"gentle",r:"資格を持つ音楽療法士が担当。完全個別でお子さんの特性や発達段階に合わせたオーダーメイドの関わりをします。音・リズム・体の感覚を通じて発達をやさしくサポートします。"}],other:["ベビーマッサージ","親子ヨガ"]},toddler:{lessons:[{n:"やさしいおとリトミック（音楽療法士担当）",t:"gentle",r:"音楽療法士担当の少人数クラス。感覚の過敏さや発達のゆっくりさに配慮した環境で、音楽を通じた発達サポートを行います。"},{n:"個別セッション（音楽療法士担当）",t:"gentle",r:"音楽療法士が完全個別で対応。お子さんの感覚・コミュニケーション・感情表現を音楽を通じてサポートします。集団が難しい場合も安心してスタートできます。"}],other:["感覚統合あそび","親子ヨガ"]},preschool:{lessons:[{n:"やさしいおとリトミック（音楽療法士担当）",t:"gentle",r:"音楽療法士担当のゆっくりクラス。集団に慣れていくための最初のステップとして、安心できる少人数の環境で音楽と親しみます。"},{n:"個別セッション（音楽療法士担当）",t:"gentle",r:"音楽療法士が担当する完全個別セッション。音楽を使って感情の調整・感覚統合・コミュニケーションをサポート。こだわりや感覚過敏がある場合も特性を活かした関わりができます。"}],other:["感覚統合あそび","ヨガ"]},school:{lessons:[{n:"個別セッション（音楽療法士担当）",t:"gentle",r:"音楽療法士が個別で寄り添います。音楽を通じて感情の整理・対人関係・自己表現をサポートし、学校生活での難しさを補完する視点で関わります。"},{n:"書道",t:"mine",r:"静かな環境で自分のペースで取り組める書道は、集団が苦手なお子さんでも安心して続けやすい習い事です。"}],other:["アートセラピー","感覚統合あそび"]}}};
+
+const TYPE_BASE={rhythm:{label:"リズム・音楽タイプ",icon:"ti-music",talent:"音やリズムへの感受性が高く、体でビートを感じる天性の力を持っています。音楽が流れると自然に体が動き、ビートを直感的につかみます。",detail:"リズム感は言語能力や数学的思考とも深くつながっており、学習全般の土台になります。感情と音楽を結びつける力が強く、音楽を通じて豊かな感情表現が育ちます。",advice:"まずは「聴く・動く・叩く」の体験を大切に。家でも音楽をたくさん流して、一緒にリズムをとる時間を作りましょう。"},expr:{label:"表現・パフォーマンスタイプ",icon:"ti-star",talent:"感情表現が豊かで人前に立つことが好き。体・声・表情で自分の気持ちを伝える力に長けています。",detail:"舞台や発表の場で輝くタイプ。コミュニケーション能力が高く、リーダーシップを発揮することも多いです。感情の起伏が豊かで、それをポジティブなエネルギーとして活かせる環境で伸びます。",advice:"発表の機会をなるべく多く作ってあげましょう。表現することを否定せず、思い切り演じられる環境を用意してください。"},art:{label:"創造・アートタイプ",icon:"ti-palette",talent:"細部への集中力と独自の感性を持ち、自分の手で何かを生み出すことに喜びを感じます。",detail:"一つのことに深く集中できる力と丁寧に積み上げる粘り強さがあります。美しさや形へのこだわりが強く、自分のペースで取り組む活動で本領を発揮します。",advice:"「結果より過程」を大切に。作品を否定せず、取り組んでいる姿を認めることが大切です。じっくり取り組める時間と道具を用意してあげてください。"},sport:{label:"身体・スポーツタイプ",icon:"ti-run",talent:"体を動かすことが大好きで身体能力の発達が著しいタイプ。動くことで思考や感情も整理されます。",detail:"運動神経・体幹・バランス感覚に優れ、新しい動きをどんどん習得します。十分な運動量が心身の安定にもつながります。",advice:"とにかくたくさん体を動かす機会を作りましょう。「上手くできた」より「思い切り動けた」を褒めてあげることが大切です。"},social:{label:"社交・リーダータイプ",icon:"ti-users",talent:"人との関わりの中で才能が花開くタイプ。グループ活動で役割を持つことでぐんぐん成長します。",detail:"コミュニケーション能力が高く場の空気を読む力があります。誰かと一緒に目標に向かう環境でより力を発揮します。",advice:"グループレッスンや発表会など仲間と一緒に取り組める環境がおすすめ。役割を与えて任せることで自信が育ちます。"},calm:{label:"集中・探究タイプ",icon:"ti-microscope",talent:"一つのことに深く集中できる力と、丁寧に積み上げる粘り強さが最大の強みです。",detail:"観察力・記憶力が高く興味を持ったことを徹底的に追求します。急かされると力が発揮しにくいこともあるため、自分のペースを大切にする環境が必要です。",advice:"焦らずお子さんのペースを大切に。「早くできた」より「丁寧にできた」を褒めることで集中力がさらに伸びます。"},body:{label:"感覚・ボディタイプ",icon:"ti-heart",talent:"体の感覚を通じて世界を理解するタイプ。柔軟性・バランス感覚・体幹が発達しやすく体で覚えることが得意です。",detail:"手先・足先・全身の感覚が豊かで体を使った表現に優れています。身体表現を通じて豊かな感性が育ちます。",advice:"「できた・できない」より「気持ちよく動けた」を大切に。体の感覚を言葉にして表現する機会も作ってあげると感性が豊かになります。"},support:{label:"個別サポートタイプ",icon:"ti-heart-handshake",talent:"お子さんのペースや感覚に寄り添ったサポートが力を引き出します。一人ひとりに合わせた関わりの中で才能が育ちます。",detail:"発達の個性や感覚の特性は、適切なサポートと環境があれば大きな力になります。音楽・体・感覚を使ったアプローチが特に効果的です。",advice:"お子さんのペースを最優先に。焦らず、できたことをたくさん認めてあげましょう。何かお困りのことがあればお気軽にご相談ください。"}};
+
+const BABY_LABELS={rhythm:"音楽・リズムが大好きな赤ちゃん",social:"人が大好きな赤ちゃん",body:"体を動かすのが大好きな赤ちゃん",support:"丁寧なサポートが力になる赤ちゃん"};
+
+let ageGroup=null,cur=0,ans=[];
+
+function calcScores(){const t={};const qs=AGE_GROUPS[ageGroup].questions;for(let i=0;i<qs.length;i++){if(ans[i]==null)continue;Object.entries(qs[i].choices[ans[i]].s).forEach(([k,v])=>{t[k]=(t[k]||0)+v;});}return t;}
+function topType(){const s=calcScores();if(!Object.keys(s).length)return'rhythm';return Object.entries(s).sort((a,b)=>b[1]-a[1])[0][0];}
+
+function renderAge(){
+  document.getElementById('app').innerHTML=`
+    <div class="age-intro">
+      <img src="images/top.png" alt="" onerror="this.style.display='none'"
+           style="width:100%;max-width:280px;border-radius:16px;margin-bottom:1.25rem;display:block;margin-left:auto;margin-right:auto;">
+      <div class="age-intro-title">お子さんの<br>個性・才能診断</div>
+      <div class="age-intro-sub">8つの才能タイプから、お子さんにぴったりの<br>習い事をご提案します。</div>
+    </div>
+    <div style="font-size:12px;color:var(--text-tertiary);margin-bottom:10px;text-align:center;">お子さんの年齢を選んでください</div>
+    <div class="age-grid">
+      ${Object.entries(AGE_GROUPS).map(([k,g])=>`<button class="age-btn" onclick="startAge('${k}')"><span class="age-main">${g.label}</span><span class="age-sub">${g.sub}</span></button>`).join('')}
+    </div>
+    <div style="font-size:12px;color:var(--text-tertiary);text-align:center;margin-top:1rem;line-height:1.7;">尾道市・福山市の総合ならいごと教室<br>おたまじゃくし</div>`;
+}
+
+function startAge(key){ageGroup=key;cur=0;ans=new Array(AGE_GROUPS[key].questions.length).fill(null);renderQ();}
+
+function renderQ(){
+  const qs=AGE_GROUPS[ageGroup].questions;const q=qs[cur];const pct=Math.round(((cur+1)/qs.length)*100);
+  document.getElementById('app').innerHTML=`
+    <div class="q-header"><span class="q-label">${AGE_GROUPS[ageGroup].label} · 個性才能診断</span><span class="q-label">${cur+1} / ${qs.length}</span></div>
+    <div class="prog-bg"><div class="prog-fill" style="width:${pct}%"></div></div>
+    <div class="q-text">${q.text}</div>
+    <div class="choices">${q.choices.map((c,i)=>`<button class="choice-btn${ans[cur]===i?' sel':''}" onclick="pick(${i})">${c.text}</button>`).join('')}</div>
+    <div class="nav">
+      <button class="nav-btn" onclick="goBack()">${cur===0?'← 年齢選択':'← もどる'}</button>
+      <button class="nav-btn primary" onclick="nextQ()" ${ans[cur]===null?'disabled':''}>${cur===qs.length-1?'結果を見る →':'つぎへ →'}</button>
+    </div>`;
+}
+
+function renderResult(){
+  const key=topType();const isBaby=(ageGroup==='baby');const isSupport=(key==='support');
+  const base=TYPE_BASE[key];const label=isBaby?(BABY_LABELS[key]||BABY_LABELS.rhythm):base.label;
+  const resultData=RESULT_MAP[key]?.[ageGroup];const lessons=resultData?.lessons||[];const other=resultData?.other||[];
+  const iconName=isBaby?'ti-baby-carriage':base.icon;const colorClass=isSupport?'teal':'blue';
+  document.getElementById('app').innerHTML=`
+    <div class="result-hero">
+      <img src="images/headers/${key}.png" alt="" onerror="this.style.display='none'"
+           style="width:100%;border-radius:12px;margin-bottom:1.25rem;object-fit:cover;height:140px;">
+      <div class="result-top">
+        <div class="result-icon ${colorClass}">
+          <img src="images/characters/${key}.png" alt="${label}"
+               style="width:48px;height:48px;border-radius:50%;object-fit:cover;"
+               onerror="this.outerHTML='<i class=\\'ti ${iconName}\\'></i>'">
+        </div>
+        <div><div class="result-badge ${colorClass}">診断結果 · ${AGE_GROUPS[ageGroup].label}</div><div class="result-type">${label}</div></div>
+      </div>
+      <div class="section"><div class="sec-label">才能・個性</div><div class="desc-text">${base.talent}</div></div>
+      <div class="section"><div class="sec-label">詳しい特徴</div><div class="desc-text">${base.detail}</div></div>
+      <div class="divider"></div>
+      <div class="section"><div class="sec-label">親御さんへのアドバイス</div><div class="advice-box">${base.advice}</div></div>
+      <div class="divider"></div>
+      <div class="section">
+        <div class="sec-label" style="margin-bottom:8px;">おすすめレッスン</div>
+        <div style="font-size:11px;color:var(--text-tertiary);margin-bottom:6px;">おたまじゃくしのレッスン</div>
+        <div class="lesson-tags" style="margin-bottom:10px;">${lessons.map(l=>`<span class="lt ${l.t}">${l.n}</span>`).join('')}</div>
+        ${other.length?`<div style="font-size:11px;color:var(--text-tertiary);margin-bottom:6px;">その他おすすめ</div><div class="lesson-tags">${other.map(l=>`<span class="lt other">${l}</span>`).join('')}</div>`:''}
+      </div>
+      <div class="divider"></div>
+      <div>
+        <div class="sec-label" style="margin-bottom:10px;">このレッスンが向いている理由</div>
+        ${lessons.map(l=>`<div class="reason-card"><div class="reason-name ${l.t==='gentle'?'teal':''}">${l.n}</div><div class="reason-body">${l.r}</div></div>`).join('')}
+      </div>
+    </div>
+    ${isSupport?`<div class="support-card"><div class="support-title"><i class="ti ti-heart-handshake"></i> 発達サポートについて</div><div class="support-body">やさしいおとリトミック・個別セッションは<strong>資格を持つ音楽療法士</strong>が担当します。<br>その他のご不安やご相談がありましたら、お気軽にお声がけください。</div><div style=\"display:flex;flex-direction:column;gap:8px;margin-top:0.75rem;\"><button class=\"cta-btn\" onclick=\"window.open('https://lin.ee/Qaj3g3x','_blank')\">LINE で体験レッスンを申し込む</button><button class=\"line-btn\" onclick=\"window.open('https://lin.ee/Qaj3g3x','_blank')\">LINE でご相談・お問い合わせ</button></div></div></div>`:`<div class="cta-card"><div class="cta-title">おたまじゃくし 体験レッスン受付中</div><div class="cta-body">尾道市・福山市の総合ならいごと教室。リトミック・ダンス・バレエ・書道など多彩なレッスンが揃っています。まずは体験から！</div><button class="cta-btn" onclick="window.open('https://lin.ee/Qaj3g3x','_blank')">LINE で体験レッスンを申し込む</button></div>`}
+    <div class="share-row">
+      <button class="share-btn" onclick="doShare()"><i class="ti ti-share"></i> シェアする</button>
+      <button class="share-btn" onclick="doCopy()"><i class="ti ti-copy"></i> コピーする</button>
+    </div>
+    <button class="retry-btn" onclick="restart()">もう一度診断する</button>`;
+}
+
+function pick(i){ans[cur]=i;renderQ();}
+function goBack(){if(cur===0)renderAge();else{cur--;renderQ();}}
+function nextQ(){if(ans[cur]===null)return;if(cur<AGE_GROUPS[ageGroup].questions.length-1){cur++;renderQ();}else renderResult();}
+function doShare(){
+  const key=topType();const isBaby=(ageGroup==='baby');
+  const label=isBaby?(BABY_LABELS[key]||BABY_LABELS.rhythm):TYPE_BASE[key].label;
+  const lessons=(RESULT_MAP[key]?.[ageGroup]?.lessons||[]).map(l=>l.n).slice(0,2).join('・');
+  const text=`うちの子（${AGE_GROUPS[ageGroup].label}）は「${label}」でした！\n\n${TYPE_BASE[key].talent}\n\nおすすめレッスン：${lessons}\n\n#おたまじゃくし #子どもの才能診断 #習い事 #尾道\n\nhttps://otama-naraigoto.com/`;
+  navigator.clipboard?.writeText(text).then(()=>alert('コピーしました！インスタのキャプションに貼り付けてシェアしてね✨'));
+}
+function doCopy(){doShare();}
+function restart(){ageGroup=null;cur=0;ans=[];renderAge();}
+
+renderAge();
+</script>
+</body>
+</html>
