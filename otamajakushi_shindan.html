@@ -159,8 +159,6 @@ function renderResult(){
   const iconName=isBaby?'ti-baby-carriage':base.icon;const colorClass=isSupport?'teal':'blue';
   document.getElementById('app').innerHTML=`
     <div class="result-hero">
-      <img src="images/headers/${key}.png" alt="" onerror="this.style.display='none'"
-           style="width:100%;border-radius:12px;margin-bottom:1.25rem;object-fit:cover;height:140px;">
       <div class="result-top">
         <div class="result-icon ${colorClass}">
           <img src="images/characters/${key}.png" alt="${label}"
